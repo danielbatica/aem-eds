@@ -1,3 +1,3 @@
 mountpoints:
   /: https://drive.google.com/drive/folders/1DNLD0lxp3b4tGgJPSZFPya4X91qeHdB9
-  /: https://main--aem-a11y-configs--danielbatica.aem.page/
+  /a11yconfigs: https://main--aem-a11y-configs--danielbatica.aem.page/scripts/customer_folder/
