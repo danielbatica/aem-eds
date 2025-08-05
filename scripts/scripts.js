@@ -109,7 +109,7 @@ async function loadLazy(doc) {
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   // loadJSON('./scripts/customer_folder/a11y_config.json');
-  loadJSON('https://main--aem-a11y-configs--danielbatica.aem.live/scripts/customer_folder/a11y_config.json');
+  loadJSON('https://main--aem-a11y-configs--danielbatica.aem.page/scripts/customer_folder/a11y_config.json');
 
   loadFonts();
 }
