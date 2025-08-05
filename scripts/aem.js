@@ -270,6 +270,27 @@ async function loadScript(src, attrs) {
 }
 
 /**
+ * Loads a JSON file.
+ * @param {string} src URL to the JSON file
+ * @returns {Promise<Object>} The JSON content
+ */
+async function loadJSON(src) {
+  return new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.setAttribute('type', 'importmap');
+      script.textContent = `{
+        "imports": {
+          "config": "${src}"
+        }
+      }`;
+      
+      script.onload = resolve;
+      script.onerror = reject;
+      document.head.append(script);
+  });
+}
+
+/**
  * Retrieves the content of metadata tags.
  * @param {string} name The metadata name (or property)
  * @param {Document} doc Document object to query for metadata. Defaults to the window's document
