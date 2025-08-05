@@ -705,6 +705,7 @@ export {
   getMetadata,
   loadBlock,
   loadCSS,
+  loadJSON,
   loadFooter,
   loadHeader,
   loadScript,
