@@ -280,7 +280,7 @@ async function loadJSON(src) {
       script.setAttribute('type', 'importmap');
       script.textContent = `{
         "imports": {
-          "config": "${src}"
+          "a11yConfig": "${src}"
         }
       }`;
       
