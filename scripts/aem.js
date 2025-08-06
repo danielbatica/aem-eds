@@ -276,17 +276,34 @@ async function loadScript(src, attrs) {
  */
 async function loadJSON(src) {
   return new Promise((resolve, reject) => {
-      const script = document.createElement('script');
-      script.setAttribute('type', 'importmap');
-      script.textContent = `{
-        "imports": {
-          "a11yConfig": "${src}"
+    (async () => {
+      try {
+        const resp = await fetch(src, {
+          referrerPolicy: 'no-referrer-when-downgrade',
+        });
+
+        if (resp.ok) {
+          const a11yConfig = await resp.json();
+
+          const script = document.createElement('script');
+          script.setAttribute('type', 'importmap');
+          script.textContent = `{
+            "imports": {
+              "a11yConfig": "data:application/json,${encodeURIComponent(JSON.stringify(a11yConfig))}"
+            }
+          }`;
+          script.onload = resolve;
+          script.onerror = reject;
+          document.head.append(script);
+        } else {
+          reject();
         }
-      }`;
-      
-      script.onload = resolve;
-      script.onerror = reject;
-      document.head.append(script);
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error('Cant load a11y config', e);
+        reject();
+      }
+    })();
   });
 }
 
